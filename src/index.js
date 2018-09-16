@@ -1,11 +1,13 @@
 // DO WHATEVER YOU WANT HERE
 
 const createEnumerableProperty = (propertyName) => {
+    let obj = {propertyName};
     return propertyName;
 };
-const createNotEnumerableProperty = (propertyName) => {
-   
+
+const createNotEnumerableProperty = (propertyName) => {  
     Object.defineProperty(Object.prototype, propertyName, {
+        enumerable: false,
         get: function(){ 
             return Object.prototype._value; 
         },
@@ -23,7 +25,6 @@ const createProtoMagicObject = () => {
 };
 
 const incrementor = () => {
-        
     incrementor.counter++;
     incrementor.valueOf = function () {
         return incrementor.counter;
@@ -32,16 +33,16 @@ const incrementor = () => {
 };
 incrementor.counter = 0;
 
+
 var counter = 0;
-const asyncIncrementor = () => {
-    
+const asyncIncrementor = () => {  
     return new Promise((resolve) => {
         counter++;
         return resolve(counter);
     });
 };
+
 const createIncrementer = () => {
-    
     return{
         count: 1,
         next() {
@@ -65,6 +66,7 @@ const returnBackInSecond = (parampampam) => {
         }, 1001)
     })
 };
+
 const getDeepPropertiesCount = (objecto) => {
     var properties = Object.getOwnPropertyNames(objecto);
     var count = properties.length;
